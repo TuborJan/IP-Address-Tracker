@@ -10,9 +10,13 @@ export const SearchAdress = ({ setPosition }: ISetState) => {
   const [input2, setInput2] = useState<number>();
 
   const apiKey: string = "at_TcRlR6D3UC4LNAkpS4yGdO7YIO5G7";
-  const urlRequset: string = `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=8.8.8.8`;
+  const urlRequset: string = `https://geo.ipify.org/api/v2/country,city,vpn?apiKey=at_TcRlR6D3UC4LNAkpS4yGdO7YIO5G7&ipAddress=46.138.31.184`;
 
-  //   const response = axios.get(urlRequset).then((response) => {});
+  useEffect(() => {
+    const response = axios.get(urlRequset).then((response) => {
+      console.log(response.data);
+    });
+  }, []);
 
   const setInputEvent = (event: string) => {
     setInput(Number(event));
