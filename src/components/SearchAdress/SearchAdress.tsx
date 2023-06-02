@@ -5,42 +5,53 @@ interface ISetState {
   setPosition: Function;
 }
 
-export const SearchAdress = ({ setPosition }: ISetState) => {
-  const [input, setInput] = useState<number>(0);
-  const [input2, setInput2] = useState<number>(0);
+interface IDataRequest {
+  as: string;
+  city: string;
+  country: string;
+  countryCode: string;
+  isp: string;
+  lat: number;
+  lon: number;
+  org: string;
+  query: string;
+  region: string;
+  regionName: string;
+  status: string;
+  timezone: string;
+  zip: string;
+}
 
-  const apiKey: string = "at_TcRlR6D3UC4LNAkpS4yGdO7YIO5G7";
-  const urlRequset: string = `http://ip-api.com/json/192.212.174.101`;
+export const SearchAdress = ({ setPosition }: ISetState) => {
+  const [IP, setIP] = useState<string>("0.0.0.0");
+  const [dataRequest, setDataRequest] = useState<IDataRequest>();
+  const urlRequest: string = `http://ip-api.com/json/${IP}`;
+
+  const makeRequest = () => {
+    const response = axios.get(urlRequest).then((response) => {
+      setDataRequest(response.data);
+    });
+  };
+
+  const setIPState = (value: string) => {
+    setIP(value);
+  };
 
   useEffect(() => {
-    const response = axios.get(urlRequset).then((response) => {
-      console.log(response.data);
-    });
-  }, []);
-
-  const setInputEvent = (event: string) => {
-    setInput(Number(event));
-  };
-
-  const setInputEvent2 = (event: string) => {
-    setInput2(Number(event));
-  };
-
-  const click = () => {
-    setPosition([input, input2]);
-  };
+    if (dataRequest !== undefined) {
+      setPosition([dataRequest.lat, dataRequest.lon]);
+      console.log(dataRequest.lat);
+    }
+  }, [dataRequest]);
 
   return (
     <div>
       <input
         type="text"
-        onChange={(event) => setInputEvent(event.target.value)}
+        name="ipInput"
+        onChange={(e) => setIPState(e.target.value)}
       />
-      <input
-        type="text"
-        onChange={(event) => setInputEvent2(event.target.value)}
-      />
-      <p onClick={() => click()}>Submit</p>
+      <h1 onClick={() => makeRequest()}>header</h1>
     </div>
   );
 };

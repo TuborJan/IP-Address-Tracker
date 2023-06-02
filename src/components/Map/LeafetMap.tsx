@@ -1,4 +1,4 @@
-import L, { LatLngExpression } from "leaflet";
+import { LatLngExpression } from "leaflet";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { LocationMarker } from "../../functions/LocationMarker";
 
