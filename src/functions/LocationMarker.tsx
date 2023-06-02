@@ -24,11 +24,11 @@ export function LocationMarker({ position }: IPositionSettings) {
   //
   useEffect(() => {
     map.flyTo(position, map.getZoom());
-  }, [position]);
+  }, [position, map]);
 
   return (
     <Marker position={position} icon={locationIcon}>
-      <Popup>You are here</Popup>
+      <Popup>You are near this place</Popup>
     </Marker>
   );
 }

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import "./SearchAdress.css";
 
 interface ISetState {
   setPosition: Function;
@@ -28,7 +29,7 @@ export const SearchAdress = ({ setPosition }: ISetState) => {
   const urlRequest: string = `http://ip-api.com/json/${IP}`;
 
   const makeRequest = () => {
-    const response = axios.get(urlRequest).then((response) => {
+    axios.get(urlRequest).then((response) => {
       setDataRequest(response.data);
     });
   };
@@ -38,20 +39,31 @@ export const SearchAdress = ({ setPosition }: ISetState) => {
   };
 
   useEffect(() => {
-    if (dataRequest !== undefined) {
+    console.log(dataRequest);
+    if (dataRequest !== undefined && dataRequest.status !== "fail") {
       setPosition([dataRequest.lat, dataRequest.lon]);
-      console.log(dataRequest.lat);
     }
-  }, [dataRequest]);
+  }, [dataRequest, setPosition]);
 
   return (
-    <div>
-      <input
-        type="text"
-        name="ipInput"
-        onChange={(e) => setIPState(e.target.value)}
-      />
-      <h1 onClick={() => makeRequest()}>header</h1>
+    <div className="header">
+      <h1>IP Address Tracker</h1>
+      <div className="search">
+        <input
+          type="text"
+          name="ipInput"
+          placeholder="Search for any IP address"
+          onChange={(e) => setIPState(e.target.value)}
+        />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="11"
+          height="14"
+          onClick={() => makeRequest()}
+        >
+          <path fill="none" stroke="#FFFFFF" strokeWidth="3" d="M2 1l6 6-6 6" />
+        </svg>
+      </div>
     </div>
   );
 };

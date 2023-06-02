@@ -1,0 +1,31 @@
+h1 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+.header {
+  height: 25vh;
+  padding: 20px 0 0 0;
+  background: url("../../../public/images/pattern-bg-desktop.png") no-repeat;
+  background-size: cover;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+}
+
+.search > input {
+  width: 25%;
+  padding: 15px 15px;
+  border: none;
+  border-radius: 10px 0 0 10px;
+}
+
+.search > svg {
+  padding: 16px;
+  background-color: #000000;
+  border-radius: 0 10px 10px 0;
+  cursor: pointer;
+}
