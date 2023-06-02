@@ -1,16 +1,16 @@
 import axios from "axios";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface ISetState {
   setPosition: Function;
 }
 
 export const SearchAdress = ({ setPosition }: ISetState) => {
-  const [input, setInput] = useState<number>();
-  const [input2, setInput2] = useState<number>();
+  const [input, setInput] = useState<number>(0);
+  const [input2, setInput2] = useState<number>(0);
 
   const apiKey: string = "at_TcRlR6D3UC4LNAkpS4yGdO7YIO5G7";
-  const urlRequset: string = `https://geo.ipify.org/api/v2/country,city,vpn?apiKey=at_TcRlR6D3UC4LNAkpS4yGdO7YIO5G7&ipAddress=46.138.31.184`;
+  const urlRequset: string = `http://ip-api.com/json/192.212.174.101`;
 
   useEffect(() => {
     const response = axios.get(urlRequset).then((response) => {

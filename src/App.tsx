@@ -6,9 +6,8 @@ import { SearchAdress } from "./components/SearchAdress/SearchAdress";
 
 function App() {
   const [position, setPosition] = useState<LatLngExpression>([
-    55.7522, 37.6156,
-  ]); //default position Moscow
-  // const [position, setPosition] = useState<LatLngExpression>([40.712, -74.227]); //default position Moscow
+    51.50853, -0.12574,
+  ]); //default position London
   const [zoom, setZoom] = useState<number>(10); //default zoom 10
 
   return (
