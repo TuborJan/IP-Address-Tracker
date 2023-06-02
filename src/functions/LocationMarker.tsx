@@ -21,7 +21,7 @@ export function LocationMarker({ position }: IPositionSettings) {
   }; // Custom location icon setting
   const locationIcon = L.divIcon(locationIconSettings); //Custom location icon
 
-  //
+  //Moving camera to current location marker
   useEffect(() => {
     map.flyTo(position, map.getZoom());
   }, [position, map]);

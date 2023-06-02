@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import "./SearchAdress.css";
+import { AddressInfo } from "../AdressInfo/AddressInfo";
+import "./SearchAddress.css";
 
 interface ISetState {
   setPosition: Function;
@@ -64,6 +65,16 @@ export const SearchAdress = ({ setPosition }: ISetState) => {
           <path fill="none" stroke="#FFFFFF" strokeWidth="3" d="M2 1l6 6-6 6" />
         </svg>
       </div>
+      {dataRequest !== undefined && dataRequest.status !== "fail" ? (
+        <AddressInfo
+          ipAddress={dataRequest.query}
+          location={dataRequest.regionName}
+          timezone={dataRequest.timezone}
+          isp={dataRequest.isp}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

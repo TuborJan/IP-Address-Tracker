@@ -8,7 +8,7 @@ interface IMapSettings {
 
 export const LeafetMap = ({ position }: IMapSettings) => {
   return (
-    <MapContainer center={position} zoom={12} scrollWheelZoom={true}>
+    <MapContainer center={position} zoom={10} scrollWheelZoom={true}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <LocationMarker position={position} />
     </MapContainer>

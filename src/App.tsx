@@ -2,7 +2,7 @@ import { useState } from "react";
 import { LatLngExpression } from "leaflet";
 import "./App.css";
 import { LeafetMap } from "./components/Map/LeafetMap";
-import { SearchAdress } from "./components/SearchAdress/SearchAdress";
+import { SearchAdress } from "./components/SearchAddress/SearchAddress";
 
 function App() {
   const [position, setPosition] = useState<LatLngExpression>([
