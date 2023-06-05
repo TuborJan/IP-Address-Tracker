@@ -8,35 +8,52 @@ interface ISetState {
   setPosition: Function;
 }
 
+// interface IDataRequest {
+//   isp: string;
+//   lat: number;
+//   lon: number;
+//   query: string;
+//   regionName: string;
+//   status: string;
+//   timezone: string;
+// }
+
 interface IDataRequest {
+  ip: string;
   isp: string;
-  lat: number;
-  lon: number;
-  query: string;
-  regionName: string;
-  status: string;
-  timezone: string;
+  location: {
+    lat: number;
+    lng: number;
+    timezone: string;
+    region: string;
+  };
+  code: number;
 }
 
 export const SearchAdress: FC<ISetState> = ({ setPosition }) => {
   const [IP, setIP] = useState<string>("0.0.0.0");
   const [dataRequest, setDataRequest] = useState<IDataRequest>();
-  const urlRequest: string = `http://ip-api.com/json/${IP}`;
-
-  const makeRequest = async () => {
-    await axios.get<IDataRequest>(urlRequest).then((response) => {
-      setDataRequest(response.data);
-    });
-  };
+  // const urlRequest: string = `https://ip-api.com/json/${IP}`;
+  const urlRequest: string = `https://geo.ipify.org/api/v2/country,city?apiKey=at_TcRlR6D3UC4LNAkpS4yGdO7YIO5G7&ipAddress=${IP}`;
 
   const setIPState = (value: string) => {
     setIP(value);
   };
 
+  const makeRequest = async () => {
+    await axios
+      .get<IDataRequest>(urlRequest)
+      .then((response) => {
+        setDataRequest(response.data);
+      })
+      .catch(() => {
+        alert("Something went wrong! Probably incorrect IP address.");
+      });
+  };
+
   useEffect(() => {
-    console.log(dataRequest);
-    if (dataRequest !== undefined && dataRequest.status !== "fail") {
-      setPosition([dataRequest.lat, dataRequest.lon]);
+    if (dataRequest !== undefined) {
+      setPosition([dataRequest.location.lat, dataRequest.location.lng]);
     }
   }, [dataRequest, setPosition]);
 
@@ -59,11 +76,11 @@ export const SearchAdress: FC<ISetState> = ({ setPosition }) => {
           <path fill="none" stroke="#FFFFFF" strokeWidth="3" d="M2 1l6 6-6 6" />
         </svg>
       </div>
-      {dataRequest !== undefined && dataRequest.status !== "fail" ? (
+      {dataRequest !== undefined && dataRequest.code !== 422 ? (
         <AddressInfo
-          ipAddress={dataRequest.query}
-          location={dataRequest.regionName}
-          timezone={dataRequest.timezone}
+          ipAddress={dataRequest.ip}
+          location={dataRequest.location.region}
+          timezone={dataRequest.location.timezone}
           isp={dataRequest.isp}
         />
       ) : (
