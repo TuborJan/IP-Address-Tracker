@@ -43,6 +43,7 @@
 @media screen and (max-width: 980px) {
   .address-info {
     height: fit-content;
+    top: 23%;
   }
 
   .address-info_items {
