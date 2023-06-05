@@ -30,3 +30,15 @@ h1 {
   border-radius: 0 10px 10px 0;
   cursor: pointer;
 }
+
+@media screen and (max-width: 980px) {
+  .search > input {
+    width: 35%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .search > input {
+    width: 65%;
+  }
+}

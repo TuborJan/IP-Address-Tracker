@@ -9,20 +9,13 @@ interface ISetState {
 }
 
 interface IDataRequest {
-  as: string;
-  city: string;
-  country: string;
-  countryCode: string;
   isp: string;
   lat: number;
   lon: number;
-  org: string;
   query: string;
-  region: string;
   regionName: string;
   status: string;
   timezone: string;
-  zip: string;
 }
 
 export const SearchAdress: FC<ISetState> = ({ setPosition }) => {
@@ -30,8 +23,8 @@ export const SearchAdress: FC<ISetState> = ({ setPosition }) => {
   const [dataRequest, setDataRequest] = useState<IDataRequest>();
   const urlRequest: string = `http://ip-api.com/json/${IP}`;
 
-  const makeRequest = () => {
-    axios.get(urlRequest).then((response) => {
+  const makeRequest = async () => {
+    await axios.get<IDataRequest>(urlRequest).then((response) => {
       setDataRequest(response.data);
     });
   };
