@@ -1,10 +1,8 @@
 .address-info {
   z-index: 999;
-  position: absolute;
-  top: 19%;
-  right: 0;
-  left: 0;
-  height: 15%;
+  position: relative;
+  height: 50%;
+  margin-top: 85px;
 }
 
 .address-info_items {
@@ -43,7 +41,7 @@
 @media screen and (max-width: 980px) {
   .address-info {
     height: fit-content;
-    top: 23%;
+    margin-top: 55px;
   }
 
   .address-info_items {
