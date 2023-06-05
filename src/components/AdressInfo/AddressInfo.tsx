@@ -1,3 +1,4 @@
+import React, { FC } from "react";
 import "./AddressInfo.css";
 
 interface IAddressInfoProps {
@@ -7,12 +8,12 @@ interface IAddressInfoProps {
   isp: string;
 }
 
-export const AddressInfo = ({
+export const AddressInfo: FC<IAddressInfoProps> = ({
   ipAddress,
   location,
   timezone,
   isp,
-}: IAddressInfoProps) => {
+}) => {
   return (
     <div className="address-info">
       <ul className="address-info_items">

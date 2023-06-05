@@ -1,3 +1,4 @@
+import React, { FC } from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { AddressInfo } from "../AdressInfo/AddressInfo";
@@ -24,7 +25,7 @@ interface IDataRequest {
   zip: string;
 }
 
-export const SearchAdress = ({ setPosition }: ISetState) => {
+export const SearchAdress: FC<ISetState> = ({ setPosition }) => {
   const [IP, setIP] = useState<string>("0.0.0.0");
   const [dataRequest, setDataRequest] = useState<IDataRequest>();
   const urlRequest: string = `http://ip-api.com/json/${IP}`;
